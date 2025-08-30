@@ -1,0 +1,156 @@
+@charset "utf-8";
+@import url(reset.css);
+
+/*
+ * Dependency : reset.css
+ */
+
+/* **************************************** *
+ * GLOBAL
+ * **************************************** */
+:root {
+  --vh: 100%;
+  --color-gray: #ccc;
+  --font-12: 12rem;
+  --font-14: 14rem;
+  --font-16: 16rem;
+  --font-20: 20rem;
+}
+html {
+  font-size: 6.25%;
+}
+html, body { overscroll-behavior: none; touch-action: manipulation; }
+a {color: #101010; text-decoration: none;}
+button {outline: none; border: none; box-shadow: none}
+*{-moz-box-sizing: border-box; box-sizing: border-box; letter-spacing: -.4rem}
+
+/*safari rem bug*/
+@media not all and (min-resolution:.001dpcm) {
+  @supports (-webkit-appearance:none) {
+    html {-webkit-text-size-adjust:none;  font-size:1px;}
+  }
+}
+
+@supports (-webkit-hyphens:none){
+  html { font-size:1px; -webkit-text-size-adjust:none; }
+}
+
+
+/* **************************************** *
+ * LAYOUT
+ * **************************************** */
+main {
+  width: 1000rem;
+  margin: 0 auto;
+  padding: 40rem 0;
+  font-size: 14rem;
+}
+.button-group {
+  display: flex;
+  justify-content: center;
+  padding: 10rem 0;
+  padding-block: 10rem;
+  gap: 10rem;
+}
+.button {
+  display: inline-block;
+  padding: 6rem 8rem;
+  border-radius: 4rem;
+  background: #ddd;
+}
+.button.primary {
+  color: #ffffff;
+  background: #0076E5;
+}
+.button.gray {
+  color: #333333;
+  background: #dddddd;
+}
+
+/* **************************************** *
+ * BOARD
+ * **************************************** */
+/* 게시판: 목록 */
+.board-container {
+
+}
+.board-filter {
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 16rem;
+}
+.board-filter select {
+  width: 150rem;
+  padding: 12rem 0;
+  padding-block: 12rem;
+}
+.board-list {
+  width: 100%;
+}
+.board-list table {
+  width: 100%;
+  margin: 0 auto;
+  border-top: 1px solid #7d7d7d;
+}
+.board-list th,
+.board-list td {
+  padding: 6rem;
+  border: 1px solid #c3c3c3;
+  border-width: 0 1px 1px 0;
+  text-align: center;
+}
+.board-list th:last-child,
+.board-list td:last-child {
+  border-right-width: 0;
+}
+.board-list th {
+  font-weight: 600;
+  color: #111111;
+  background: #cccccc;
+}
+.board-list .subject {
+  display: block;
+  text-align: left;
+}
+.board-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 10rem;
+}
+.board-pagination .page {
+  display: block;
+  width: 16rem;
+  height: 16rem;
+  font-size: 10rem;
+  text-align: center;
+  border: 2px solid transparent;;
+}
+.board-pagination .page.active {
+  text-decoration: underline;
+  border-color: #111111;
+}
+.board-pagination .move {
+  border: 1px solid #cccccc;
+}
+
+/* 게시판: 글쓰기 */
+#editor {
+}
+
+.write-container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 12rem;
+}
+.write-container label {
+  display: block;
+  font-weight: 500;
+}
+.write-container input {
+  display: block;
+  width: 100%;
+  height: 32rem;
+  margin: 2rem 0;
+  margin-block: 2rem;
+}
