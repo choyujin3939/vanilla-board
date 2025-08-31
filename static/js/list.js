@@ -2,7 +2,7 @@ import {
   getRandomElement,
   getRandomInt,
   maskName,
-  getRandomPastDate
+  getRandomPastDate,
 } from './common.js';
 
 /*
@@ -94,7 +94,6 @@ export function generateDummyData(count) {
     id: count - index
   }));
 }
-
 export function renderTable(tbody, pageData) {
   tbody.innerHTML = pageData.map(item => `
     <tr>

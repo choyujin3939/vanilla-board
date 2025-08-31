@@ -5,13 +5,26 @@
 	<meta name="viewport"
 				content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>리스트</title>
-	<script type="module" src="../static/js/edit.js"></script>
+	<title>수정하기</title>
+	<script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js" defer></script>
+	<script type="module" src="../static/js/edit.js" defer></script>
 	<link rel="stylesheet" href="../static/css/common.css">
 </head>
 <body>
 <main>
-
+	<div class="write-container">
+		<div>
+			<input type="text" id="title" placeholder="제목을 입력하세요" />
+		</div>
+		<div>
+			<div id="editor"></div>
+		</div>
+	</div>
+	
+	<div class="button-group">
+		<button class="button gray" id="cancelBtn">취소</button>
+		<button class="button primary" id="saveBtn">저장</button>
+	</div>
 </main>
 </body>
 </html>
