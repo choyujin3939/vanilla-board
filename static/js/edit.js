@@ -2,7 +2,7 @@
  * Dependency : common.js
  *              ckeditor (https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js)
  */
-import {goBack, initEditor} from './common.js';
+import {checkRequired, goBack, initEditor} from './common.js';
 
 /* **************************************** *
  * GLOBAL
@@ -37,20 +37,24 @@ window.addEventListener('DOMContentLoaded', async () => {
   cancelBtn.addEventListener('click', () => goBack());
 
   saveBtn.addEventListener('click', () => {
-    const newTitle = titleEl.value;
-    const newContent = editor.getData();
+    const title = titleEl.value;
+    const content = editor.getData();
 
-    if (!newTitle || !newContent) {
-      alert('제목과 내용을 입력하세요');
-      return;
-    }
+    // if (!newTitle || !newContent) {
+    //   alert('제목과 내용을 입력하세요');
+    //   return;
+    // }
+    if (!checkRequired([
+      { value: title, name: '제목' },
+      { value: content, name: '내용' }
+    ])) return;
 
     const idx = boardData.findIndex(item => item.id === parseInt(postId));
     if (idx !== -1) {
       boardData[idx] = {
         ...boardData[idx],
-        title: newTitle,
-        content: newContent,
+        title: title,
+        content: content,
         modDt: new Date().toISOString().split('T')[0]
       };
       sessionStorage.setItem('boardData', JSON.stringify(boardData));

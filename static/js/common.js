@@ -1,4 +1,3 @@
-
 /* **************************************** *
  * GLOBAL
  * **************************************** */
@@ -7,6 +6,13 @@ let editor = null;
 /* **************************************** *
  * FN
  * **************************************** */
+export function goBack() {
+  if (window.history.length > 1) {
+    window.history.back();
+  } else {
+    window.location.href = '/';
+  }
+}
 export function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
@@ -29,16 +35,9 @@ export function getEditorText(editor) {
   const domRoot = editor.editing.view.domConverter.mapViewToDom(viewRoot);
   const text = domRoot.innerText || '';
 
-  const cleaned = text.replace(/\u200B/g, '').trim();
+  const cleaned = text.replace(/\u200B/g, '');
 
   return cleaned;
-}
-export function goBack() {
-  if (window.history.length > 1) {
-    window.history.back();
-  } else {
-    window.location.href = '/';
-  }
 }
 export async function initEditor(initialContent = '') {
   try {
@@ -64,12 +63,19 @@ export async function initEditor(initialContent = '') {
 
     const counterEl = document.createElement('div');
     counterEl.style.textAlign = 'right';
-    counterEl.style.marginTop = '8rem';
+    counterEl.style.marginTop = '8px';
     document.querySelector('.ck-editor').appendChild(counterEl);
 
     const updateCounter = () => {
-      const text = getEditorText(editor);
-      counterEl.textContent = `byte: ${getUtf8Bytes(text)}`;
+      let text = getEditorText(editor);
+
+      if (text === '\n') {
+        text = '';
+      }
+
+      const normalizedText = text.replace(/\u00A0/g, ' ');
+
+      counterEl.textContent = `byte: ${getUtf8Bytes(normalizedText)}`;
     };
 
     updateCounter();
@@ -78,9 +84,20 @@ export async function initEditor(initialContent = '') {
 
     domEl.addEventListener('input', updateCounter);
     domEl.addEventListener('keyup', updateCounter);
+    domEl.addEventListener('keydown', updateCounter);
 
     return editor;
   } catch(e) {
     console.error(e);
   }
+}
+
+export function checkRequired(fields) {
+  for (const field of fields) {
+    if (!field.value || !field.value.trim()) {
+      alert(`${field.name}을(를) 입력하세요`);
+      return false;
+    }
+  }
+  return true;
 }

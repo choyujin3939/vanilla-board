@@ -1,4 +1,4 @@
-import {maskName, goBack, initEditor} from './common.js';
+import {maskName, goBack, initEditor, checkRequired} from './common.js';
 
 /*
  * Dependency : common.js
@@ -25,10 +25,10 @@ window.addEventListener('DOMContentLoaded', async () => {
     const title = titleEl.value;
     const content = editor.getData();
 
-    if (!title || !content) {
-      alert('제목과 내용을 입력하세요');
-      return;
-    }
+    if (!checkRequired([
+      { value: title, name: '제목' },
+      { value: content, name: '내용' }
+    ])) return;
 
     const boardData = JSON.parse(sessionStorage.getItem('boardData')) || [];
     const newPost = {

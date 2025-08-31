@@ -11,20 +11,20 @@
 	<link rel="stylesheet" href="../static/css/common.css">
 </head>
 <body>
-<main>
-	<div class="write-container">
-		<div>
-			<input type="text" id="title" placeholder="제목을 입력하세요" />
+	<main>
+		<div class="write-container">
+			<div>
+				<input type="text" id="title" placeholder="제목을 입력하세요" />
+			</div>
+			<div>
+				<div id="editor"></div>
+			</div>
 		</div>
-		<div>
-			<div id="editor"></div>
+		
+		<div class="button-group">
+			<button class="button gray" id="cancelBtn">취소</button>
+			<button class="button primary" id="saveBtn">저장</button>
 		</div>
-	</div>
-	
-	<div class="button-group">
-		<button class="button gray" id="cancelBtn">취소</button>
-		<button class="button primary" id="saveBtn">저장</button>
-	</div>
-</main>
+	</main>
 </body>
 </html>
