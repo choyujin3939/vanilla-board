@@ -17,13 +17,16 @@ const TITLES = [
   '넷플릭스 한국 드라마 1위', '서울 아파트 매매가 상승',
   '엔비디아 GPU 공개', '구글 AI 강화', '현대차 수소차 확대'
 ];
+
 const DUMMY_SENTENCES = [
   "이 글은 테스트용 더미 텍스트입니다.",
   "내용 확인을 위해 작성되었습니다.",
   "게시판 동작 테스트용 문장입니다.",
   "여기에 더미 데이터를 넣어보세요.",
 ];
+
 const NAMES = ['홍길동', '김철수', '이영희', '박민수', '장준', '이수현', '최영준'];
+
 const PAGINATION = {
   FIRST: 'first',
   LAST: 'last'
@@ -94,6 +97,7 @@ export function generateDummyData(count) {
     id: count - index
   }));
 }
+
 export function renderTable(tbody, pageData) {
   tbody.innerHTML = pageData.map(item => `
     <tr>
@@ -107,6 +111,7 @@ export function renderTable(tbody, pageData) {
     </tr>
   `).join('');
 }
+
 export function renderPagination(paginationEl, currentPage, totalPages, onPageClick) {
   let html = `<a href='#' class='page move first' data-page='${PAGINATION.FIRST}'><</a>`;
 
@@ -133,5 +138,3 @@ export function renderPagination(paginationEl, currentPage, totalPages, onPageCl
     });
   });
 }
-
-
